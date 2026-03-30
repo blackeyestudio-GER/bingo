@@ -34,10 +34,15 @@ jobs:
         run: npm install -g npm@10.9.2
       - name: Install dependencies
         run: npm ci
+      # Default: /repo/ for https://<user>.github.io/<repo>/
+      # Custom domain on a project site is served at / → set repo variable NUXT_APP_BASE_URL to /
+      # (Settings → Secrets and variables → Actions → Variables)
       - name: Static HTML export with Nuxt
         env:
-          NUXT_APP_BASE_URL: /${{ github.event.repository.name }}/
-        run: npm run generate:gh
+          NUXT_APP_BASE_URL: ${{ vars.NUXT_APP_BASE_URL }}
+        run: |
+          export NUXT_APP_BASE_URL="${NUXT_APP_BASE_URL:-/${{ github.event.repository.name }}/}"
+          npm run generate:gh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
