@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-// GitHub project pages need base URL `/repo-name/`. Set NUXT_APP_BASE_URL in CI (see workflow).
+// GitHub project pages need base URL `/repo-name/`. Set NUXT_APP_BASE_URL in CI (see .github/workflows/nuxtjs.yml).
 const baseURL = process.env.NUXT_APP_BASE_URL || '/'
 
 export default defineNuxtConfig({
