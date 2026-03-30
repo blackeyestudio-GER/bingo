@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tactile press: slight sink + darken (no layout shift on focus ring) */
+@layer base {
+  button:enabled {
+    transition:
+      transform 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.1s ease;
+  }
+
+  button:enabled:active {
+    transform: translateY(1px) scale(0.98);
+    filter: brightness(0.92);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button:enabled {
+      transition: filter 0.1s ease;
+    }
+
+    button:enabled:active {
+      transform: none;
+      filter: brightness(0.88);
+    }
+  }
+}
+
+body {
+  @apply min-h-dvh bg-night text-dim-gray antialiased;
+}
