@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: "22"
           cache: npm
+      # Align with lockfile generation (npm 11+ can disagree on peers vs npm 10).
+      - name: Pin npm 10
+        run: npm install -g npm@10.9.2
       - name: Install dependencies
         run: npm ci
       - name: Static HTML export with Nuxt
