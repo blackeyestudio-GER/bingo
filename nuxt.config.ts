@@ -1,14 +1,12 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-// Static hosting base path. Local dev: default `/`.
-// GitHub Project Pages default URL needs `/repo-name/`; a custom domain on that repo is usually served at `/` — then set Actions variable NUXT_APP_BASE_URL=/ (see workflow).
-const baseURL = process.env.NUXT_APP_BASE_URL || '/'
-
+// https://nuxt.com/docs/api/nuxt-config
+// Subpath deploy (e.g. https://example.de/bingo/): build with NUXT_APP_BASE_URL=/bingo/
+// (trailing slash). Default / matches a custom domain at the site root (GitHub Pages).
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   ssr: false,
   app: {
-    baseURL,
+    baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
       htmlAttrs: { lang: 'de' },
     },
